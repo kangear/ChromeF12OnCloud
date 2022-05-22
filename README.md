@@ -1,3 +1,11 @@
+# 非Docker使用
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt --upgrade
+python app.py
+```
+
 # 如何使用
 ```shell
 docker build -t twitter_cc . && docker rm -f twitter_cc ; docker run --shm-size=2g --name twitter_cc -p 8080:5000 twitter_cc
