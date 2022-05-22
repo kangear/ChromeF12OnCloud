@@ -14,16 +14,18 @@ app = Flask("chrome")
 CHROME_CMD = "google-chrome"
 HAR_CAPTURER = "chrome-har-capturer"
 print(platform.platform())
-if (platform.platform().find("amzn2") != -1):
+if platform.platform().find("amzn2") != -1:
     CHROME_CMD = "google-chrome"
     HAR_CAPTURER = "chrome-har-capturer"
-elif (platform.platform().find("macOS") != -1):
+elif platform.platform().find("macOS") != -1:
     CHROME_CMD = '"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"'
     HAR_CAPTURER = "/usr/local/bin/chrome-har-capturer"
 
 os.system(CHROME_CMD + " " + " --remote-debugging-port=9222 --headless --no-sandbox --disable-gpu &")
 
-USER_AGENT = '"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.83 Safari/537.36"'
+USER_AGENT = '"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) ' \
+             'Chrome/99.0.4844.83 Safari/537.36" '
+
 
 def do_id(url):
     print("url: " + url)
@@ -67,6 +69,7 @@ def do_id(url):
         }
     }
 
+
 @app.route('/')
 def hello_world():
     # 启动google_remote_debug
@@ -75,6 +78,7 @@ def hello_world():
     print("url: " + str(url))
     url = urllib.parse.unquote(url)
     return do_id(url)
+
 
 if __name__ == '__main__':
     '''
